@@ -1,12 +1,19 @@
 package nl.lotrac.bv.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "customers")
+@EqualsAndHashCode
+@ToString
 public class Customer {
 
 
@@ -48,8 +55,8 @@ public class Customer {
 //    Vegeet niet getter en setter van List<Order> aan te maken
 //
 
-    @OneToMany (mappedBy = "customer", fetch = FetchType.EAGER)
-    List<Order> orders;
+    @OneToMany (mappedBy = "customer")
+    private List<Order> orders;
 
     //  waarom is apikey nodig????
     @Column
@@ -62,62 +69,4 @@ public class Customer {
 //            cascade = CascadeType.ALL,
 //            orphanRemoval = true,
 //            fetch = FetchType.EAGER)
-
-
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getCustomername() {
-        return customername;
-    }
-
-    public void setCustomername(String customername) {
-        this.customername = customername;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getApikey() {
-        return apikey;
-    }
-
-    public void setApikey(String apikey) {
-        this.apikey = apikey;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-
 }

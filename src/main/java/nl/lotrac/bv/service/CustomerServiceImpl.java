@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import nl.lotrac.bv.utils.RandomStringGenerator;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Collection<Customer> getCustomers() {
+    public List<Customer> getCustomers() {
 
         return customerRepository.findAll();
     }
