@@ -25,8 +25,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private MessageFrontEnd messageFrontEnd = new MessageFrontEnd();
-
 
     @GetMapping(value = "")
     public ResponseEntity<Object> getUsers() {
@@ -42,7 +40,7 @@ public class UserController {
     public ResponseEntity<Object> createUser(@RequestBody User user) {
         System.out.println("UserController, createUser");
         String newUsername = userService.createUser(user);
-        messageFrontEnd.boodschap = ("User: " + newUsername+ "  created");
+        MessageFrontEnd messageFrontEnd = new MessageFrontEnd("User: " + newUsername+ "  created");
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
                 .buildAndExpand(newUsername).toUri();
 

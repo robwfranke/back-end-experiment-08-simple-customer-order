@@ -1,10 +1,7 @@
 package nl.lotrac.bv.controller;
 
-import nl.lotrac.bv.exceptions.BadRequestException;
-import nl.lotrac.bv.exceptions.RecordNotFoundException;
-import nl.lotrac.bv.exceptions.UsernameExistsException;
-import nl.lotrac.bv.exceptions.UsernameNotFoundException;
-
+import nl.lotrac.bv.exceptions.*;
+import nl.lotrac.bv.model.MessageFrontEnd;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -30,6 +27,11 @@ public class ExceptionController {
     @ExceptionHandler(value = UsernameNotFoundException.class)
     public ResponseEntity<Object> exception(UsernameNotFoundException exception) {
         return ResponseEntity.badRequest().build();
+    }
+
+    @ExceptionHandler(value = CustomernameExistsException.class)
+    public ResponseEntity<MessageFrontEnd> exception(CustomernameExistsException exception){
+        return new ResponseEntity<>(new MessageFrontEnd(exception.getMessage()), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(value = UsernameExistsException.class)

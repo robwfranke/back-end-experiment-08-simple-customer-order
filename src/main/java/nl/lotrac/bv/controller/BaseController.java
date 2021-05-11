@@ -20,8 +20,6 @@ public class BaseController {
 
     @Autowired
     private CustomerService customerService;
-    private MessageFrontEnd messageFrontEnd = new MessageFrontEnd();
-
 
 
     @GetMapping(value = "/")
@@ -37,12 +35,12 @@ public class BaseController {
 
         String newCustomername= customerService.createNewCustomer(customer);
 
-        messageFrontEnd.boodschap = ("Customer: " + newCustomername+ "  created");
+        MessageFrontEnd message = new MessageFrontEnd("Customer: " + newCustomername+ "  created");
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{customername}")
                 .buildAndExpand(newCustomername).toUri();
 
-  return ResponseEntity.created(location).body(messageFrontEnd);
+  return ResponseEntity.created(location).body(message);
     }
 
 }

@@ -61,8 +61,8 @@ public class CustomerServiceImpl implements CustomerService {
 
         System.out.println("CustomerService Impl create newCustomer");
 
-//        if (customerRepository.existsById(customer.getCustomername()))
-//            throw new CustomernameExistsException("customer exists");
+        if (customerRepository.getCustomerByCustomername(customer.getCustomername()) != null)
+            throw new CustomernameExistsException("customer exists");
         String randomString = RandomStringGenerator.generateAlphaNumeric(20);
         customer.setApikey(randomString);
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));

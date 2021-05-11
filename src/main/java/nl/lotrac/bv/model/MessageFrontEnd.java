@@ -1,14 +1,11 @@
 package nl.lotrac.bv.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class MessageFrontEnd {
 
-    public String boodschap;
-
-    public String getBoodschap() {
-        return boodschap;
-    }
-
-    public void setBoodschap(String boodschap) {
-        this.boodschap = boodschap;
-    }
+    private final String boodschap;
 }
